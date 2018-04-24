@@ -94,3 +94,5 @@ target/
 /.project
 /.pydevproject
 /private/
+/.idea/
+/.idea/vcs.xml
