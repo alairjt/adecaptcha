@@ -149,8 +149,22 @@ def segment_audio_fixed4(data_array, sr, limit=0.0,  seg_details=None,
     
     segments=numpy.array([[start_1, end_1], [start_2, end_2], [start_3, end_3], [start_4,end_4]],dtype=numpy.double) * sr
     return cut_segments(data_array, sr, segments.astype(numpy.int), None, None, seg_details)
- 
-@seg_alg('Old Very Naive')    
+
+
+@seg_alg('6 Fixed segments')
+def segment_audio_fixed4(data_array, sr, limit=0.0, seg_details=None,
+                         start_1=0.0, end_1=0.1,
+                         start_2=0.2, end_2=0.3,
+                         start_3=0.4, end_3=0.5,
+                         start_4=0.6, end_4=0.7,
+                         start_5=0.8, end_5=0.9,
+                         start_6=1.0, end_6=1.1):
+    segments = numpy.array([[start_1, end_1], [start_2, end_2], [start_3, end_3], [start_4, end_4], [start_5, end_5], [start_6, end_6]],
+                           dtype=numpy.double) * sr
+    return cut_segments(data_array, sr, segments.astype(numpy.int), None, None, seg_details)
+
+
+@seg_alg('Old Very Naive')
 def segment_audio_naive(data_array, sr, limit=0.05,  seg_details=None, 
                          step_sec=0.01,  size_sec=None):
     

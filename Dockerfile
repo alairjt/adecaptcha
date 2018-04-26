@@ -1,4 +1,3 @@
-#FROM ubuntu:16.04
 FROM alairjt/python-docker
 
 COPY . /app
@@ -37,4 +36,7 @@ RUN rm -rf adecaptcha/pwrspec.so || true && \
     rm -rf adecaptcha/pwrspec.c || true && \
     python setup.py build_ext --inplace
 
-#RUN pip install -r requirements.txt
+RUN cd adecaptcha/libsvm-3.17 && \
+    make
+
+RUN pip install -r requirements.txt

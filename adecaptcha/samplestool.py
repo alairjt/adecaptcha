@@ -524,11 +524,14 @@ class MainDialog(QDialog, sampletool_dialog.Ui_Dialog):
     def on_generateButton_clicked(self):
         self.save_sample()
         no_ts_count=0
+        count=0
         cls_collector=clslib.ClsCollect()
         for a,p, txt_file in self._items:
+            count+=1
             if not txt_file:
                 no_ts_count+=1
             else:
+                print 'Processing captcha:  %d - %s'%(count, txt_file)
                 f=open(os.path.join(self._dir, txt_file))
                 cls_collector.add(f.read())
                 f.close()
@@ -544,6 +547,7 @@ class MainDialog(QDialog, sampletool_dialog.Ui_Dialog):
         for c in cls_collector.classes: print '%s(%d),'%(c, cls_collector.class_count(c)), 
         print
         file_name=unicode(QFileDialog.getSaveFileName(self, 'File to save samples mfcc representation'), 'UTF-8')
+        print 'Processing file: %s'%(file_name)
         if not file_name:
             return
         base_name=os.path.splitext(file_name)[0]
@@ -563,6 +567,7 @@ class MainDialog(QDialog, sampletool_dialog.Ui_Dialog):
                     ts=open(os.path.join(self._dir, txt_file)).read()
                     for i,s in enumerate(segments):
                         rs= audiolib.calc_mfcc(s, sr, self.nbins)
+                        print(i,s)
                         try:
                             cls=ts[i]
                         except IndexError:

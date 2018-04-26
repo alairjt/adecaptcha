@@ -1,6 +1,7 @@
 Cython
 numpy
 scipy
+Flask
 # pymad must be installed manually from git because of config step
 # git+https://github.com/jaqx0r/pymad#egg=mad
 # pyao also needs to be installed manually
