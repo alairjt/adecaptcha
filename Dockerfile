@@ -40,3 +40,7 @@ RUN cd adecaptcha/libsvm-3.17 && \
     make
 
 RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["python", "run.py"]
